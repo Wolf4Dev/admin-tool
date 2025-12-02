@@ -1,225 +1,215 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { FileText, Download } from "lucide-react";
+import { Download, Eye, ChevronRight } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 
 export default function SalaryPage() {
-  // Mock data
-  const employee = {
-    name: "Nguyễn Văn A",
-    position: "Senior Frontend Developer",
-    department: "Engineering",
-    email: "nguyen.van.a@company.com",
-    phone: "+84 912 345 678",
-    joinDate: "15/01/2023",
-    dateOfBirth: "25/05/1995",
-    address: "123 Nguyễn Huệ, Quận 1, TP.HCM",
+  // Mock data for current month
+  const currentPayslip = {
+    month: "Tháng 11/2025",
+    totalAmount: "25,000,000",
+    paymentDate: "05/12/2025",
+    breakdown: {
+      basicSalary: "20,000,000",
+      allowances: "2,500,000",
+      overtime: "1,800,000",
+      bonus: "1,500,000",
+      deductions: {
+        socialInsurance: "800,000",
+        healthInsurance: "150,000",
+        unemploymentInsurance: "100,000",
+        tax: "750,000",
+      },
+    },
   };
 
-  const bankAccount = {
-    bank: "Vietcombank",
-    accountNumber: "1234567890",
-    accountHolder: "NGUYEN VAN A",
-    branch: "Chi nhánh Quận 1, TP.HCM",
-  };
-
-  const documents = [
-    { name: "Hợp đồng lao động", date: "15/01/2023", type: "PDF" },
-    { name: "Phụ lục hợp đồng", date: "01/06/2024", type: "PDF" },
-    { name: "Bảo hiểm xã hội", date: "15/01/2023", type: "PDF" },
-    { name: "Giấy khám sức khỏe", date: "10/01/2023", type: "PDF" },
+  const previousPayslips = [
+    { month: "Tháng 10/2025", amount: "24,500,000", date: "05/11/2025" },
+    { month: "Tháng 9/2025", amount: "23,800,000", date: "05/10/2025" },
+    { month: "Tháng 8/2025", amount: "25,200,000", date: "05/09/2025" },
   ];
+
+  const totalIncome =
+    parseFloat(currentPayslip.breakdown.basicSalary.replace(/,/g, "")) +
+    parseFloat(currentPayslip.breakdown.allowances.replace(/,/g, "")) +
+    parseFloat(currentPayslip.breakdown.overtime.replace(/,/g, "")) +
+    parseFloat(currentPayslip.breakdown.bonus.replace(/,/g, ""));
+
+  const totalDeductions =
+    parseFloat(
+      currentPayslip.breakdown.deductions.socialInsurance.replace(/,/g, "")
+    ) +
+    parseFloat(
+      currentPayslip.breakdown.deductions.healthInsurance.replace(/,/g, "")
+    ) +
+    parseFloat(
+      currentPayslip.breakdown.deductions.unemploymentInsurance.replace(
+        /,/g,
+        ""
+      )
+    ) +
+    parseFloat(currentPayslip.breakdown.deductions.tax.replace(/,/g, ""));
 
   return (
     <div className="space-y-6">
-        {/* Header */}
-        <div>
-          <h1 className="text-3xl font-bold text-balance">Hồ sơ của tôi</h1>
-          <p className="text-muted-foreground mt-1">
-            Thông tin cá nhân và tài liệu nhân sự
-          </p>
-        </div>
-
-        {/* Profile Header Card */}
-        <Card className="shadow-sm">
-          <CardContent className="p-6">
-            <div className="flex items-start gap-6">
-              <Avatar className="h-24 w-24">
-                <AvatarImage
-                  src="/placeholder.svg?height=96&width=96"
-                  alt={employee.name}
-                />
-                <AvatarFallback className="text-2xl">NVA</AvatarFallback>
-              </Avatar>
-              <div className="flex-1">
-                <h2 className="text-2xl font-bold text-balance">
-                  {employee.name}
-                </h2>
-                <p className="text-lg text-muted-foreground mt-1">
-                  {employee.position}
-                </p>
-                <div className="flex items-center gap-2 mt-3">
-                  <Badge variant="secondary">{employee.department}</Badge>
-                  <span className="text-sm text-muted-foreground">
-                    • Tham gia từ {employee.joinDate}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <div className="grid gap-6 lg:grid-cols-2">
-          {/* Personal Information */}
-          <Card className="shadow-sm">
-            <CardHeader>
-              <CardTitle>Thông tin cá nhân</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid gap-4">
-                <div className="grid grid-cols-3 gap-2">
-                  <span className="text-sm font-medium text-muted-foreground">
-                    Họ và tên:
-                  </span>
-                  <span className="col-span-2 text-sm">{employee.name}</span>
-                </div>
-                <div className="grid grid-cols-3 gap-2">
-                  <span className="text-sm font-medium text-muted-foreground">
-                    Email:
-                  </span>
-                  <span className="col-span-2 text-sm">{employee.email}</span>
-                </div>
-                <div className="grid grid-cols-3 gap-2">
-                  <span className="text-sm font-medium text-muted-foreground">
-                    Số điện thoại:
-                  </span>
-                  <span className="col-span-2 text-sm">{employee.phone}</span>
-                </div>
-                <div className="grid grid-cols-3 gap-2">
-                  <span className="text-sm font-medium text-muted-foreground">
-                    Ngày sinh:
-                  </span>
-                  <span className="col-span-2 text-sm">
-                    {employee.dateOfBirth}
-                  </span>
-                </div>
-                <div className="grid grid-cols-3 gap-2">
-                  <span className="text-sm font-medium text-muted-foreground">
-                    Ngày vào làm:
-                  </span>
-                  <span className="col-span-2 text-sm">
-                    {employee.joinDate}
-                  </span>
-                </div>
-                <div className="grid grid-cols-3 gap-2">
-                  <span className="text-sm font-medium text-muted-foreground">
-                    Phòng ban:
-                  </span>
-                  <span className="col-span-2 text-sm">
-                    {employee.department}
-                  </span>
-                </div>
-                <div className="grid grid-cols-3 gap-2">
-                  <span className="text-sm font-medium text-muted-foreground">
-                    Vị trí:
-                  </span>
-                  <span className="col-span-2 text-sm">
-                    {employee.position}
-                  </span>
-                </div>
-                <div className="grid grid-cols-3 gap-2">
-                  <span className="text-sm font-medium text-muted-foreground">
-                    Địa chỉ:
-                  </span>
-                  <span className="col-span-2 text-sm">{employee.address}</span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Bank Account Information */}
-          <Card className="shadow-sm">
-            <CardHeader>
-              <CardTitle>Tài khoản ngân hàng</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid gap-4">
-                <div className="grid grid-cols-3 gap-2">
-                  <span className="text-sm font-medium text-muted-foreground">
-                    Ngân hàng:
-                  </span>
-                  <span className="col-span-2 text-sm font-medium">
-                    {bankAccount.bank}
-                  </span>
-                </div>
-                <div className="grid grid-cols-3 gap-2">
-                  <span className="text-sm font-medium text-muted-foreground">
-                    Số tài khoản:
-                  </span>
-                  <span className="col-span-2 text-sm font-mono">
-                    {bankAccount.accountNumber}
-                  </span>
-                </div>
-                <div className="grid grid-cols-3 gap-2">
-                  <span className="text-sm font-medium text-muted-foreground">
-                    Chủ tài khoản:
-                  </span>
-                  <span className="col-span-2 text-sm font-medium">
-                    {bankAccount.accountHolder}
-                  </span>
-                </div>
-                <div className="grid grid-cols-3 gap-2">
-                  <span className="text-sm font-medium text-muted-foreground">
-                    Chi nhánh:
-                  </span>
-                  <span className="col-span-2 text-sm">
-                    {bankAccount.branch}
-                  </span>
-                </div>
-              </div>
-              <div className="pt-2 border-t">
-                <p className="text-xs text-muted-foreground">
-                  Thông tin tài khoản ngân hàng dùng để thanh toán lương hàng
-                  tháng
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Employment Documents */}
-        <Card className="shadow-sm">
-          <CardHeader>
-            <CardTitle>Tài liệu nhân sự</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-2">
-              {documents.map((doc, index) => (
-                <div
-                  key={index}
-                  className="flex items-center justify-between p-4 rounded-lg border bg-card hover:bg-accent/50 transition-colors"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                      <FileText className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium">{doc.name}</p>
-                      <p className="text-xs text-muted-foreground">
-                        {doc.type} • Ngày tải lên: {doc.date}
-                      </p>
-                    </div>
-                  </div>
-                  <Button variant="ghost" size="sm">
-                    <Download className="h-4 w-4 mr-2" />
-                    Tải xuống
-                  </Button>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+      {/* Header */}
+      <div>
+        <h1 className="text-3xl font-bold text-balance">Lương của tôi</h1>
+        <p className="text-muted-foreground mt-1">
+          Chi tiết phiếu lương và lịch sử thanh toán
+        </p>
       </div>
+
+      {/* Current Month Payslip */}
+      <Card className="shadow-sm border-primary/20">
+        <CardHeader className="pb-4">
+          <div className="flex items-start justify-between">
+            <div>
+              <CardTitle className="text-2xl">{currentPayslip.month}</CardTitle>
+              <p className="text-sm text-muted-foreground mt-1">
+                Ngày thanh toán: {currentPayslip.paymentDate}
+              </p>
+            </div>
+            <div className="text-right">
+              <p className="text-sm text-muted-foreground">Tổng lương</p>
+              <p className="text-3xl font-bold text-primary">
+                {currentPayslip.totalAmount}đ
+              </p>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          {/* Income Breakdown */}
+          <div className="space-y-3">
+            <h3 className="font-semibold text-sm text-muted-foreground uppercase">
+              Thu nhập
+            </h3>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between py-2">
+                <span className="text-sm">Lương cơ bản</span>
+                <span className="font-medium">
+                  {currentPayslip.breakdown.basicSalary}đ
+                </span>
+              </div>
+              <div className="flex items-center justify-between py-2">
+                <span className="text-sm">Phụ cấp</span>
+                <span className="font-medium">
+                  {currentPayslip.breakdown.allowances}đ
+                </span>
+              </div>
+              <div className="flex items-center justify-between py-2">
+                <span className="text-sm">Tiền OT</span>
+                <span className="font-medium">
+                  {currentPayslip.breakdown.overtime}đ
+                </span>
+              </div>
+              <div className="flex items-center justify-between py-2">
+                <span className="text-sm">Thưởng</span>
+                <span className="font-medium">
+                  {currentPayslip.breakdown.bonus}đ
+                </span>
+              </div>
+              <Separator />
+              <div className="flex items-center justify-between py-2">
+                <span className="font-semibold">Tổng thu nhập</span>
+                <span className="font-bold text-green-600">
+                  {totalIncome.toLocaleString("vi-VN")}đ
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Deductions Breakdown */}
+          <div className="space-y-3">
+            <h3 className="font-semibold text-sm text-muted-foreground uppercase">
+              Khấu trừ
+            </h3>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between py-2">
+                <span className="text-sm">Bảo hiểm xã hội (BHXH)</span>
+                <span className="font-medium text-red-600">
+                  -{currentPayslip.breakdown.deductions.socialInsurance}đ
+                </span>
+              </div>
+              <div className="flex items-center justify-between py-2">
+                <span className="text-sm">Bảo hiểm y tế (BHYT)</span>
+                <span className="font-medium text-red-600">
+                  -{currentPayslip.breakdown.deductions.healthInsurance}đ
+                </span>
+              </div>
+              <div className="flex items-center justify-between py-2">
+                <span className="text-sm">Bảo hiểm thất nghiệp (BHTN)</span>
+                <span className="font-medium text-red-600">
+                  -{currentPayslip.breakdown.deductions.unemploymentInsurance}đ
+                </span>
+              </div>
+              <div className="flex items-center justify-between py-2">
+                <span className="text-sm">Thuế thu nhập cá nhân</span>
+                <span className="font-medium text-red-600">
+                  -{currentPayslip.breakdown.deductions.tax}đ
+                </span>
+              </div>
+              <Separator />
+              <div className="flex items-center justify-between py-2">
+                <span className="font-semibold">Tổng khấu trừ</span>
+                <span className="font-bold text-red-600">
+                  -{totalDeductions.toLocaleString("vi-VN")}đ
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <Separator className="my-4" />
+
+          {/* Net Salary */}
+          <div className="flex items-center justify-between p-4 rounded-lg bg-primary/5 border border-primary/20">
+            <span className="text-lg font-semibold">Lương thực nhận</span>
+            <span className="text-2xl font-bold text-primary">
+              {currentPayslip.totalAmount}đ
+            </span>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex gap-3 pt-2">
+            <Button className="flex-1 gap-2">
+              <Eye className="h-4 w-4" />
+              Xem chi tiết
+            </Button>
+            <Button variant="outline" className="flex-1 gap-2">
+              <Download className="h-4 w-4" />
+              Tải phiếu lương
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Previous Payslips */}
+      <Card className="shadow-sm">
+        <CardHeader>
+          <CardTitle>Lịch sử phiếu lương</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-2">
+            {previousPayslips.map((payslip, index) => (
+              <div
+                key={index}
+                className="flex items-center justify-between p-4 rounded-lg border bg-card hover:bg-accent/50 transition-colors cursor-pointer"
+              >
+                <div>
+                  <p className="font-medium">{payslip.month}</p>
+                  <p className="text-sm text-muted-foreground">
+                    Ngày thanh toán: {payslip.date}
+                  </p>
+                </div>
+                <div className="flex items-center gap-4">
+                  <p className="font-bold text-lg">{payslip.amount}đ</p>
+                  <ChevronRight className="h-5 w-5 text-muted-foreground" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
