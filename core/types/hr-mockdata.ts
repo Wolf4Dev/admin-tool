@@ -370,3 +370,216 @@ export const recentActivities = [
     timestamp: "1 ngày trước"
   }
 ];
+
+export const projects = [
+  {
+    id: 1,
+    name: "Website Redesign Project",
+    description: "Thiết kế lại website công ty với giao diện hiện đại",
+    status: "active" as const,
+    progress: 75,
+    startDate: "01/10/2024",
+    endDate: "31/12/2024",
+    role: "Frontend Developer",
+    team: ["Nguyễn Văn A", "Trần Thị B", "Lê Văn C"],
+    priority: "high" as const,
+    budget: 150000000,
+    spent: 112500000
+  },
+  {
+    id: 2,
+    name: "Mobile App Development",
+    description: "Phát triển ứng dụng di động cho khách hàng",
+    status: "active" as const,
+    progress: 45,
+    startDate: "15/10/2024",
+    endDate: "15/02/2025",
+    role: "UI/UX Designer",
+    team: ["Phạm Thị D", "Hoàng Văn E", "Nguyễn Văn F"],
+    priority: "medium" as const,
+    budget: 200000000,
+    spent: 90000000
+  },
+  {
+    id: 3,
+    name: "Internal HR System",
+    description: "Xây dựng hệ thống quản lý nhân sự nội bộ",
+    status: "planning" as const,
+    progress: 30,
+    startDate: "01/12/2024",
+    endDate: "31/03/2025",
+    role: "Project Member",
+    team: ["Lê Văn G", "Trần Thị H", "Phạm Văn I"],
+    priority: "low" as const,
+    budget: 100000000,
+    spent: 30000000
+  }
+];
+
+export const tasks = [
+  {
+    id: 1,
+    projectId: 1,
+    title: "Thiết kế trang chủ",
+    description: "Thiết kế lại trang chủ với giao diện mới",
+    status: "completed" as const,
+    priority: "high" as const,
+    assignee: "Nguyễn Văn A",
+    dueDate: "15/11/2024",
+    estimatedHours: 40,
+    actualHours: 35,
+    tags: ["UI/UX", "Frontend"]
+  },
+  {
+    id: 2,
+    projectId: 1,
+    title: "Phát triển component header",
+    description: "Xây dựng component header responsive",
+    status: "in_progress" as const,
+    priority: "high" as const,
+    assignee: "Trần Thị B",
+    dueDate: "30/11/2024",
+    estimatedHours: 24,
+    actualHours: 18,
+    tags: ["Frontend", "React"]
+  },
+  {
+    id: 3,
+    projectId: 1,
+    title: "Tối ưu performance",
+    description: "Tối ưu tốc độ tải trang",
+    status: "todo" as const,
+    priority: "medium" as const,
+    assignee: "Lê Văn C",
+    dueDate: "15/12/2024",
+    estimatedHours: 32,
+    actualHours: 0,
+    tags: ["Performance", "Optimization"]
+  },
+  {
+    id: 4,
+    projectId: 2,
+    title: "Thiết kế màn hình đăng nhập",
+    description: "Thiết kế UI cho màn hình đăng nhập",
+    status: "completed" as const,
+    priority: "high" as const,
+    assignee: "Phạm Thị D",
+    dueDate: "01/11/2024",
+    estimatedHours: 16,
+    actualHours: 14,
+    tags: ["UI/UX", "Mobile"]
+  },
+  {
+    id: 5,
+    projectId: 2,
+    title: "Phát triển authentication flow",
+    description: "Xây dựng flow xác thực người dùng",
+    status: "in_progress" as const,
+    priority: "high" as const,
+    assignee: "Hoàng Văn E",
+    dueDate: "15/11/2024",
+    estimatedHours: 28,
+    actualHours: 20,
+    tags: ["Backend", "Authentication"]
+  },
+  {
+    id: 6,
+    projectId: 2,
+    title: "Tích hợp push notification",
+    description: "Tích hợp hệ thống thông báo đẩy",
+    status: "todo" as const,
+    priority: "medium" as const,
+    assignee: "Nguyễn Văn F",
+    dueDate: "30/11/2024",
+    estimatedHours: 20,
+    actualHours: 0,
+    tags: ["Mobile", "Notification"]
+  },
+  {
+    id: 7,
+    projectId: 3,
+    title: "Phân tích yêu cầu",
+    description: "Thu thập và phân tích yêu cầu hệ thống",
+    status: "completed" as const,
+    priority: "high" as const,
+    assignee: "Lê Văn G",
+    dueDate: "15/11/2024",
+    estimatedHours: 24,
+    actualHours: 22,
+    tags: ["Analysis", "Planning"]
+  },
+  {
+    id: 8,
+    projectId: 3,
+    title: "Thiết kế database schema",
+    description: "Thiết kế cấu trúc database cho hệ thống",
+    status: "in_progress" as const,
+    priority: "high" as const,
+    assignee: "Trần Thị H",
+    dueDate: "30/11/2024",
+    estimatedHours: 32,
+    actualHours: 15,
+    tags: ["Database", "Backend"]
+  }
+];
+
+export const projectTimeline = [
+  {
+    id: 1,
+    projectId: 1,
+    phase: "Planning",
+    startDate: "01/10/2024",
+    endDate: "15/10/2024",
+    status: "completed" as const,
+    progress: 100,
+    tasks: [
+      { id: 1, name: "Thu thập yêu cầu", completed: true },
+      { id: 2, name: "Phân tích kỹ thuật", completed: true },
+      { id: 3, name: "Lên kế hoạch", completed: true }
+    ]
+  },
+  {
+    id: 2,
+    projectId: 1,
+    phase: "Design",
+    startDate: "16/10/2024",
+    endDate: "31/10/2024",
+    status: "completed" as const,
+    progress: 100,
+    tasks: [
+      { id: 4, name: "Thiết kế UI/UX", completed: true },
+      { id: 5, name: "Prototype", completed: true },
+      { id: 6, name: "Review design", completed: true }
+    ]
+  },
+  {
+    id: 3,
+    projectId: 1,
+    phase: "Development",
+    startDate: "01/11/2024",
+    endDate: "15/12/2024",
+    status: "in_progress" as const,
+    progress: 60,
+    tasks: [
+      { id: 7, name: "Thiết kế trang chủ", completed: true },
+      { id: 8, name: "Phát triển component header", completed: false },
+      { id: 9, name: "Tối ưu performance", completed: false },
+      { id: 10, name: "Testing", completed: false }
+    ]
+  },
+  {
+    id: 4,
+    projectId: 1,
+    phase: "Testing & Deployment",
+    startDate: "16/12/2024",
+    endDate: "31/12/2024",
+    status: "pending" as const,
+    progress: 0,
+    tasks: [
+      { id: 11, name: "Unit testing", completed: false },
+      { id: 12, name: "Integration testing", completed: false },
+      { id: 13, name: "UAT", completed: false },
+      { id: 14, name: "Deployment", completed: false }
+    ]
+  }
+];

@@ -143,6 +143,11 @@ const staffMenuItems = [
     icon: LayoutDashboard,
   },
   {
+    title: 'Dự án',
+    href: '/staff/projects',
+    icon: Briefcase,
+  },
+  {
     title: 'Hồ sơ của tôi',
     href: '/staff/profile',
     icon: User,
